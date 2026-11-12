@@ -1,0 +1,99 @@
+.latin { font-family: var(--font-latin); font-size: clamp(1.6rem, 1rem + 1.9vw, 3.2rem); line-height: 1; letter-spacing: 0.02em; color: var(--nx-text); white-space: nowrap; }
+.latinSm { font-family: var(--font-latin); font-size: clamp(0.85rem, 0.7rem + 0.3vw, 1.05rem); letter-spacing: 0.3em; color: var(--nx-muted); }
+.latinBig { font-family: var(--font-latin); font-size: clamp(2rem, 1rem + 2.2vw, 3.6rem); line-height: 0.95; letter-spacing: 0.01em; color: var(--nx-pale); }
+
+/* ---------- 1 hero ---------- */
+.hero { position: relative; min-height: min(100svh, 980px); display: grid; place-items: center; padding: calc(var(--header-h) + 3rem) var(--nx-pad) clamp(6rem, 9vw, 9rem); overflow: hidden; }
+.heroMedia { position: absolute; inset: 0; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 4.5vw), calc(100% - 6vw) 100%, 6vw 100%, 0 calc(100% - 4.5vw)); }
+.heroImgWrap { position: absolute; inset: -4% 0; }
+.heroImg { object-fit: cover; object-position: 50% 58%; }
+.heroShade { position: absolute; inset: 0; background:
+  radial-gradient(60% 55% at 50% 46%, rgba(22, 19, 42, 0.72) 0%, rgba(22, 19, 42, 0.4) 60%, rgba(22, 19, 42, 0.15) 100%),
+  linear-gradient(180deg, rgba(22, 19, 42, 0.55) 0%, rgba(22, 19, 42, 0) 30%, rgba(22, 19, 42, 0.25) 80%, rgba(22, 19, 42, 0.6) 100%); }
+.heroInner { position: relative; z-index: 1; display: grid; justify-items: center; text-align: center; gap: clamp(14px, 1.6vw, 26px); max-width: 860px; }
+.heroOrn { width: min(100%, 620px); justify-content: center; }
+.heroTitle { font-family: var(--font-display); font-weight: 700; font-size: clamp(3rem, 1.6rem + 4.2vw, 6.6rem); line-height: 0.82; color: #fff; }
+.heroLead { max-width: 36em; font-size: clamp(1rem, 0.9rem + 0.3vw, 1.2rem); line-height: 1.65; color: rgba(255, 255, 255, 0.86); }
+.heroLead strong { color: #fff; font-weight: 600; }
+.chev { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 4.5vw; min-height: 26px; pointer-events: none; overflow: visible; }
+.chev path { fill: none; stroke: var(--nx-line-2); stroke-width: 1.2; vector-effect: non-scaling-stroke; transform: translateY(6px); }
+
+/* ---------- 2 story ---------- */
+.story { padding-block: var(--nx-y) calc(var(--nx-y) * 0.6); }
+.storyGrid { display: grid; grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1.15fr); gap: clamp(28px, 4vw, 72px); align-items: start; }
+.storyHead { display: grid; gap: 16px; justify-items: start; }
+.storyOrn { width: 100%; max-width: 560px; }
+.storyTitle { font-family: var(--font-display); font-weight: 300; font-size: clamp(2.2rem, 1.2rem + 2.2vw, 3.8rem); line-height: 0.9; white-space: nowrap; padding-inline: 0.15em; }
+.storyFig { margin-top: 18px; display: flex; align-items: baseline; gap: 14px; color: var(--nx-muted); font-size: var(--fs-small); max-width: 18em; }
+.storyNum { font-family: var(--font-display); font-weight: 300; font-size: clamp(2.6rem, 1.6rem + 2vw, 4rem); line-height: 0.8; color: var(--nx-text); }
+.vrule { width: 1px; align-self: stretch; background: var(--nx-line); }
+.storyBody { display: grid; gap: 1.1em; font-size: clamp(1rem, 0.9rem + 0.3vw, 1.18rem); line-height: 1.75; color: var(--nx-muted); max-width: 40em; }
+.storyBody strong { color: var(--nx-text); font-weight: 600; }
+
+/* ---------- 3 projects ---------- */
+.projects { padding-block: calc(var(--nx-y) * 0.5) var(--nx-y); }
+.projOrn { margin-bottom: clamp(2rem, 3.4vw, 3.6rem); }
+.projTitle { font-family: var(--font-display); font-weight: 300; font-size: clamp(2.4rem, 1.4rem + 2.6vw, 4.4rem); line-height: 1; white-space: nowrap; padding-inline: 0.2em; }
+.projGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2.2vw, 40px) clamp(14px, 1.8vw, 32px); --tile-ar: 1.39; }
+.projFoot { display: flex; justify-content: center; margin-top: clamp(2rem, 3.4vw, 3.4rem); }
+
+/* ---------- 4 support ---------- */
+.support { padding-block: var(--nx-y); }
+.supHead { display: grid; grid-template-columns: 1fr minmax(0, 26rem); align-items: center; gap: clamp(20px, 2.6vw, 52px); margin-bottom: clamp(3.5rem, 6vw, 6rem); }
+.supTitle { display: grid; gap: 8px; }
+.supHe { font-family: var(--font-display); font-weight: 300; font-size: clamp(2.2rem, 1.4rem + 2vw, 3.6rem); line-height: 1; color: var(--nx-muted); }
+.supLead { font-weight: 600; line-height: 1.55; font-size: clamp(1rem, 0.9rem + 0.25vw, 1.15rem); text-wrap: balance; }
+.cards { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 28px); align-items: start; }
+.card { --c: 22px; position: relative; display: grid; justify-items: center; text-align: center; gap: 12px; padding: clamp(2.8rem, 3.4vw, 3.6rem) clamp(14px, 1.4vw, 24px) clamp(1.6rem, 2vw, 2.2rem); margin-top: 26px;
+  background: linear-gradient(var(--nx-bg), var(--nx-bg)) padding-box; }
+/* chamfered outline drawn as a clipped 1px frame */
+.card::before { content: ''; position: absolute; inset: 0; background: var(--nx-line-2);
+  clip-path: polygon(evenodd, var(--c) 0, calc(100% - var(--c)) 0, 100% var(--c), 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, var(--c) 100%, 0 calc(100% - var(--c)), 0 var(--c),
+    1px var(--c), 1px calc(100% - var(--c)), calc(var(--c) + 0.4px) calc(100% - 1px), calc(100% - var(--c) - 0.4px) calc(100% - 1px), calc(100% - 1px) calc(100% - var(--c)), calc(100% - 1px) var(--c), calc(100% - var(--c) - 0.4px) 1px, calc(var(--c) + 0.4px) 1px, 1px var(--c)); }
+.card:nth-child(even) { margin-top: 10px; }
+.badge { position: absolute; top: -26px; left: 50%; width: 50px; height: 50px; margin-left: -25px; display: grid; place-items: center; background: var(--nx-pale); color: var(--nx-bg); }
+.badge svg { width: 24px; height: 24px; }
+.cardTitle { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.6rem, 1.2rem + 0.8vw, 2.2rem); line-height: 1; }
+.cardText { font-size: var(--fs-small); line-height: 1.6; color: var(--nx-muted); }
+
+/* ---------- 6 FAQ ---------- */
+.faq { padding-block: var(--nx-y); }
+.faqGrid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr); gap: clamp(28px, 5vw, 96px); align-items: start; }
+.faqHead { display: grid; gap: 12px; position: sticky; top: 110px; }
+.faqOrn { max-width: 420px; }
+.faqTitle { font-family: var(--font-display); font-weight: 300; font-size: clamp(2.4rem, 1.3rem + 2.4vw, 4.2rem); line-height: 0.88; }
+.qs { border-top: 1px solid var(--nx-line); }
+.q { border-bottom: 1px solid var(--nx-line); }
+.q summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 64px; padding-block: 18px;
+  font-family: var(--font-display); font-weight: 400; font-size: clamp(1.6rem, 1.2rem + 0.8vw, 2.2rem); line-height: 1.1; }
+.q summary::-webkit-details-marker { display: none; }
+.q summary:focus-visible { outline: 2px solid var(--nx-pale); outline-offset: 4px; }
+.plus { position: relative; width: 16px; height: 16px; flex: none; }
+.plus::before, .plus::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1.2px; background: currentColor; transition: transform 400ms var(--ease-out); }
+.plus::after { transform: rotate(90deg); }
+.q[open] .plus::after { transform: rotate(0deg); }
+.q p { padding-bottom: 24px; max-width: 42em; color: var(--nx-muted); line-height: 1.7; }
+
+/* ---------- 7 story bar ---------- */
+.storyBar { padding-block: 0 clamp(3rem, 5vw, 5rem); }
+.sbOrn { justify-content: center; }
+.sbOrn :global(.nx-btn) { flex: none; }
+
+@media (max-width: 1100px) {
+  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 48px; }
+  .card:nth-child(even) { margin-top: 26px; }
+  .projGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .storyGrid { grid-template-columns: 1fr; }
+  .vrule { display: none; }
+  .supHead { grid-template-columns: 1fr; }
+  .faqGrid { grid-template-columns: 1fr; }
+  .faqHead { position: static; }
+}
+@media (max-width: 640px) {
+  .cards { grid-template-columns: 1fr; row-gap: 44px; }
+  .projGrid { grid-template-columns: 1fr; --tile-ar: 1.25; }
+  .storyTitle, .projTitle { white-space: normal; }
+  .heroMedia { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 22px), calc(100% - 28px) 100%, 28px 100%, 0 calc(100% - 22px)); }
+}

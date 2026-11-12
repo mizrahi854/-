@@ -1,0 +1,71 @@
+/* All desktop geometry is expressed in mock pixels: 1u = 1px of the 1672×941 frame */
+.sec { position: relative; container-type: inline-size; overflow: hidden; background: #16122a; aspect-ratio: 1672 / 941; min-height: 520px; }
+.photo { --u: calc(100cqw / 1672); position: absolute; inset: 0; clip-path: var(--clip);
+  /* the photograph's own sky (top) and road (bottom) tones carry it to the frame edges — no invented content */
+  background: linear-gradient(180deg, #6688c4 0%, #6a8bc7 9%, rgba(106, 139, 199, 0) 22%), linear-gradient(0deg, #4f4438 0%, #6a5847 7%, rgba(106, 88, 71, 0) 18%), #6a8bc7; }
+.frame { position: absolute; left: calc(564 * var(--u)); top: calc(52 * var(--u)); width: calc(1212 * var(--u)); height: calc(808 * var(--u));
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 calc(44 * var(--u)), #000 calc(100% - 56 * var(--u)), transparent 100%), linear-gradient(to right, transparent 0, #000 calc(30 * var(--u)), #000 100%);
+  -webkit-mask-composite: source-in; mask-image: linear-gradient(to bottom, transparent 0, #000 calc(44 * var(--u)), #000 calc(100% - 56 * var(--u)), transparent 100%), linear-gradient(to right, transparent 0, #000 calc(30 * var(--u)), #000 100%); mask-composite: intersect; }
+.img { object-fit: cover; }
+.slide { position: absolute; inset: 0; }
+.slideHidden { clip-path: inset(0% 0% 0% 100%); }
+.pager { --u: calc(100cqw / 1672); position: absolute; z-index: 3; right: calc(47 * var(--u)); bottom: calc(108 * var(--u)); display: flex; gap: 8px; }
+.pg { position: relative; width: 38px; height: 28px; display: grid; place-items: center; }
+.pg::before { content: ''; width: 30px; height: 2px; background: rgba(255, 255, 255, 0.5); transition: background 300ms, width 300ms var(--ease-out); }
+.pg[aria-current='true']::before { background: #fff; width: 38px; }
+.pg:hover::before { background: #fff; }
+.pg:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* compact facts row (replaces the standalone numbers band) */
+.facts { --u: calc(100cqw / 1672); position: absolute; z-index: 2; right: calc(100cqw - 620 * var(--u)); width: calc(500 * var(--u)); bottom: calc(52 * var(--u)); display: grid; grid-template-columns: repeat(3, 1fr); color: #fff; margin: 0; padding-top: calc(18 * var(--u)); border-top: 1px solid rgba(217, 216, 230, 0.28); }
+.fact { display: grid; gap: 2px; padding-inline-end: calc(14 * var(--u)); }
+.fact dt { font-family: var(--font-display); font-weight: 300; font-size: max(22px, calc(44 * var(--u))); line-height: 0.95; white-space: nowrap; }
+.fact dd { margin: 0; font-size: max(12px, calc(17 * var(--u))); line-height: 1.35; color: rgba(236, 235, 244, 0.72); }
+
+.glow { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.halo, .core { fill: none; stroke-linejoin: round; stroke-linecap: round; }
+.halo { stroke: rgba(222, 226, 255, 0.55); stroke-width: 9; filter: blur(5px); }
+.core { stroke: rgba(255, 255, 255, 0.95); stroke-width: 2.4; }
+
+.caption { --u: calc(100cqw / 1672); position: absolute; right: calc(47 * var(--u)); bottom: calc(52 * var(--u)); display: flex; align-items: baseline; gap: calc(14 * var(--u));
+  font-size: calc(24 * var(--u)); font-weight: 400; letter-spacing: 0.02em; color: #fff; text-shadow: 0 1px 10px rgba(10, 8, 30, 0.45); }
+.caption span { opacity: 0.85; }
+
+.text { --u: calc(100cqw / 1672); position: absolute; top: 0; bottom: 0; right: calc(100cqw - 620 * var(--u)); width: calc(500 * var(--u)); display: flex; flex-direction: column; align-items: flex-start; color: #fff; }
+/* Karantina is the narrowest licensed Hebrew display face; the mock's headline is a compressed grotesk, so the cap height is matched and the width follows */
+.title { margin-top: calc(190 * var(--u)); font-family: var(--font-display); font-weight: 300; font-size: calc(168 * var(--u)); line-height: 0.78; letter-spacing: -0.005em; white-space: nowrap; color: #f4f3fb;
+  /* optical condensing toward the mock's compressed headline (Karantina is the narrowest licensed Hebrew face) */
+  transform: scaleX(var(--tx, 0.84)); transform-origin: 100% 50%; }
+.sub { margin-top: calc(6 * var(--u)); font-weight: 500; font-size: calc(38 * var(--u)); line-height: 1; color: #d9d8e6; letter-spacing: 0.005em; }
+.rule { display: block; margin-top: calc(34 * var(--u)); width: calc(84 * var(--u)); height: max(1px, calc(2 * var(--u))); background: #d9d8e6; transform-origin: right; }
+.body { margin-top: calc(35 * var(--u)); font-size: calc(27 * var(--u)); line-height: calc(38 * var(--u)); font-weight: 400; color: #ecebf4; }
+.body > span { display: block; white-space: nowrap; }
+.cta { margin-top: calc(66 * var(--u)); margin-inline-start: calc(95 * var(--u)); display: inline-flex; align-items: center; gap: calc(32 * var(--u)); font-weight: 700; font-size: calc(31 * var(--u)); line-height: 1; color: #fff; }
+.ctaText { padding-bottom: calc(12 * var(--u)); border-bottom: max(1.5px, calc(2.5 * var(--u))) solid currentColor; }
+.arr { width: calc(36 * var(--u)); height: calc(14 * var(--u)); min-width: 22px; min-height: 9px; margin-top: calc(-10 * var(--u)); transition: transform 500ms var(--ease-out); }
+.cta:hover .arr, .cta:focus-visible .arr { transform: translateX(-8px); }
+.cta:focus-visible { outline: 2px solid #fff; outline-offset: 6px; }
+
+/* ---- below the frame's comfortable width: recompose (photo first, broken edge underneath, text panel) ---- */
+@media (max-width: 900px) {
+  .sec { aspect-ratio: auto; min-height: 0; display: flex; flex-direction: column; }
+  .frame { left: 0; top: 0; width: 100%; height: 100%; -webkit-mask-image: none; mask-image: none; }
+  .fill { display: none; }
+  .photo { position: relative; inset: auto; height: 74vw; max-height: 560px; clip-path: polygon(0 0, 100% 0, 100% 88%, 82% 93%, 64% 97%, 52% 100%, 40% 95%, 22% 91%, 0 86%); }
+  .img { object-position: 46% 55%; }
+  .glow { display: none; }
+  .pager { --u: 1px; top: calc(min(74vw, 560px) - 64px); bottom: auto; right: auto; left: 14px; }
+  .facts { --u: 1px; position: relative; right: auto; bottom: auto; width: auto; margin: 0 22px 56px; padding-top: 18px; }
+  .fact dt { font-size: clamp(1.5rem, 7vw, 2.1rem); }
+  .fact dd { font-size: 0.8rem; }
+  .caption { --u: 1px; position: absolute; top: calc(min(74vw, 560px) - 64px); bottom: auto; right: 20px; font-size: 15px; gap: 10px; }
+  .text { --u: 1px; position: relative; inset: auto; width: auto; padding: 26px 22px 64px; }
+  .title { margin-top: 0; font-size: clamp(3.4rem, 15vw, 5rem); white-space: normal; transform: none; }
+  .sub { margin-top: 14px; font-size: clamp(1.5rem, 6.4vw, 2rem); }
+  .rule { margin-top: 22px; width: 60px; height: 1.5px; }
+  .body { margin-top: 22px; font-size: 1.125rem; line-height: 1.65; max-width: 30em; }
+  .body > span { display: inline; white-space: normal; }
+  .cta { margin-top: 34px; margin-inline-start: 0; font-size: 1.25rem; gap: 24px; }
+  .ctaText { padding-bottom: 9px; border-bottom-width: 1.5px; }
+  .arr { width: 30px; height: 12px; margin-top: -8px; }
+}

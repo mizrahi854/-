@@ -1,0 +1,69 @@
+.header {
+  position: fixed; inset: 0 0 auto 0; z-index: 60; height: var(--header-h);
+  color: #fff; transition: background var(--dur-base) var(--ease-out), height var(--dur-base) var(--ease-out), box-shadow var(--dur-base);
+}
+.inner { height: 100%; display: flex; align-items: center; gap: 0; padding-inline: clamp(20px, 3vw, 64px) clamp(20px, 2.4vw, 40px); }
+/* RTL: menu button sits at the right (corner), logo at far left */
+.menuBtn { width: 48px; height: 48px; display: grid; place-items: center; margin-inline-end: auto; color: inherit; flex: none; }
+.burger { width: 34px; display: grid; gap: 7px; }
+.burger i { display: block; height: 1.2px; background: currentColor; transition: transform var(--dur-base) var(--ease-out); }
+.burger i:nth-child(2) { width: 70%; justify-self: start; }
+.menuBtn:hover .burger i:nth-child(2) { transform: scaleX(1.43); transform-origin: right; }
+
+/* wide, calm link bar (Emerald proportion): links spread across the bar, inactive ones recede, phone is a pale cut button */
+.nav { display: flex; align-items: center; gap: clamp(22px, 2.6vw, 48px); }
+.nav ul { display: flex; align-items: center; gap: clamp(26px, 3.3vw, 64px); }
+.link { position: relative; font-size: clamp(1.05rem, 0.5rem + 0.9vw, 1.4rem); font-weight: 400; letter-spacing: 0.01em; padding-block: 10px; white-space: nowrap; opacity: 0.74; transition: opacity var(--dur-short) var(--ease-out); }
+.link:hover, .link:focus-visible, .link[aria-current='page'] { opacity: 1; }
+.link::after { content: ''; position: absolute; inset: auto 0 3px 0; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform var(--dur-base) var(--ease-out); }
+.link:hover::after, .link[aria-current='page']::after { transform: scaleX(1); }
+.portal { margin-inline-start: clamp(4px, 1vw, 20px); }
+.phone { display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 20px; background: #ebeaf4; color: var(--ink); font-weight: 600; font-size: 1.05rem; white-space: nowrap;
+  clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px); transition: background-color var(--dur-short) var(--ease-out); }
+.phone:hover, .phone:focus-visible { background: #fff; }
+.logo { display: block; width: clamp(104px, 8.5vw, 146px); margin-inline-start: clamp(18px, 2.4vw, 40px); flex: none; transition: width var(--dur-base) var(--ease-out); }
+.logo img { width: 100%; height: auto; }
+
+/* home, top-of-page: the menu control lives in the grey curved corner */
+.home:not(.solid) .menuBtn { color: var(--ink); }
+/* one header on every page: same height, same logo box, same link positions (top and scrolled) */
+.header:not(.solid) { height: calc(var(--header-h) + 70px); }
+.home:not(.solid) .menuBtn { align-self: flex-start; margin-top: 34px; }
+
+.solid { background: rgba(27, 26, 49, 0.95); box-shadow: 0 1px 0 rgba(255,255,255,0.08); height: 72px; }
+@media (min-width: 768px) { .solid .logo img { width: 63%; } }
+
+/* desktop: the full link bar is always visible, so the burger is hidden (its slot is kept so the bar and the hero's curved corner stay where they were) */
+@media (min-width: 1181px) { .menuBtn { visibility: hidden; pointer-events: none; } }
+
+@media (max-width: 1180px) {
+  .nav { display: none; }
+  .home:not(.solid) .menuBtn { transform: none; }
+  .header:not(.solid) { height: var(--header-h); }
+  .home:not(.solid) .menuBtn { align-self: center; margin-top: 0; }
+}
+@media (max-width: 767px) { .solid { height: 62px; } .solid .logo { width: 78px; } .logo { width: 92px; } }
+
+/* ---- full menu ---- */
+.menu { position: fixed; inset: 0; z-index: 80; background: var(--ink); color: #fff; display: flex; flex-direction: column; padding: 20px clamp(20px, 3vw, 64px) 40px; overflow-y: auto; }
+.menu[hidden] { display: none; }
+.menuTop { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.menuLogo { width: 92px; }
+.menuLogo img { width: 100%; height: auto; }
+.closeBtn { width: 48px; height: 48px; display: grid; place-items: center; }
+.menuGrid { flex: 1; display: grid; grid-template-columns: 1.3fr 1fr; gap: 6vw; align-items: end; padding-block: 6vh 2vh; }
+.menuMain li a { display: flex; align-items: baseline; gap: 22px; padding-block: 0.15em; }
+.mNum { font-size: var(--fs-caption); letter-spacing: 0.2em; color: var(--on-ink-3); width: 2.4em; }
+.mClip { overflow: hidden; display: block; font-family: var(--font-display); font-weight: 300; font-size: clamp(3rem, 1.6rem + 4.2vw, 6.4rem); line-height: 1.02; }
+.mClip > span { display: block; transition: transform var(--dur-base) var(--ease-out); }
+.menuMain li a:hover .mClip > span { transform: translateX(-14px); }
+.menuMain li a:hover .mNum { color: #fff; }
+.menuSide { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; padding-bottom: 1.4em; border-top: 1px solid var(--line-ink); padding-top: 28px; }
+.mHead { font-size: var(--fs-caption); letter-spacing: 0.2em; color: var(--on-ink-3); margin-bottom: 14px; }
+.menuSide li { font-size: var(--fs-small); color: var(--on-ink-2); padding-block: 4px; }
+.menuSide a { display: inline-flex; align-items: center; gap: 6px; padding-block: 6px; }
+.menuSide a:hover { color: #fff; }
+@media (max-width: 900px) {
+  .menuGrid { grid-template-columns: 1fr; align-items: start; gap: 40px; padding-top: 3vh; }
+  .menuSide { grid-template-columns: 1fr 1fr; }
+}

@@ -1,0 +1,327 @@
+/* ==========================================================================
+   Bonei Binyan — design tokens
+   Colors from the existing brand (bonei.co.il). Fonts are centralized here:
+   replace --font-display / --font-body to swap families site-wide.
+   ========================================================================== */
+:root {
+  /* brand */
+  --ink: #24223f;          /* main deep blue-purple */
+  --ink-2: #28255d;        /* accent blue-purple */
+  --ink-deep: #1b1a31;     /* footer / deepest surface (tonal step of --ink) */
+  --ink-soft: #3a3866;
+  --gray: #e9e9e9;         /* main neutral */
+  --gray-2: #f5f5f5;
+  --gray-3: #f8f8f8;
+  --white: #ffffff;
+  --line: #e6e6e6;
+  --line-strong: #cfcfd6;
+  --text: #24223f;
+  --text-2: #55536f;       /* 6.6:1 on #e9e9e9 */
+  --text-3: #6b6984;       /* 4.6:1 on #f5f5f5 */
+  --on-ink: #ffffff;
+  --on-ink-2: rgba(255, 255, 255, 0.72);
+  --on-ink-3: rgba(255, 255, 255, 0.5);
+  --line-ink: rgba(255, 255, 255, 0.16);
+  --focus: #8f8cff;
+
+  /* type */
+  --font-display: var(--f-karantina), 'Arial Narrow', sans-serif;
+  --font-body: var(--f-assistant), 'Arial', sans-serif;
+
+  --fs-hero: clamp(4.6rem, 1.2rem + 8.4vw, 11rem);
+  --fs-h1: clamp(3.4rem, 1.4rem + 5.6vw, 7.6rem);
+  --fs-h2: clamp(2.8rem, 1.3rem + 4.2vw, 6rem);
+  --fs-h3: clamp(2rem, 1.2rem + 2.1vw, 3.2rem);
+  --fs-statement: clamp(1.45rem, 1.05rem + 1.05vw, 2.15rem);
+  --fs-lead: clamp(1.12rem, 1rem + 0.35vw, 1.32rem);
+  --fs-body: 1.0625rem;      /* 17px */
+  --fs-small: 0.9375rem;     /* 15px */
+  --fs-caption: 0.8125rem;   /* 13px */
+  --fs-num: clamp(3rem, 1.6rem + 3.6vw, 5.6rem);
+
+  /* space (8pt) */
+  --s-1: 0.25rem; --s-2: 0.5rem; --s-3: 0.75rem; --s-4: 1rem; --s-5: 1.5rem;
+  --s-6: 2rem; --s-7: 3rem; --s-8: 4rem; --s-9: 6rem; --s-10: 8rem; --s-11: 11rem;
+  --gutter: clamp(1rem, 0.4rem + 2.6vw, 3.5rem);
+  --section-y: clamp(5rem, 3rem + 7vw, 11rem);
+  --max: 1520px;
+
+  /* geometry: chamfered corners echo the logo's cut squares */
+  --cut: 14px;
+  --cut-lg: 26px;
+
+  /* motion tokens (mirrored in src/lib/motion.ts) */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-in: cubic-bezier(0.5, 0, 0.75, 0);
+  --dur-short: 220ms;
+  --dur-base: 600ms;
+  --dur-enter: 1100ms;
+
+  --header-h: 92px;
+}
+
+@media (max-width: 767px) {
+  :root { --header-h: 68px; --cut: 10px; --cut-lg: 16px; }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  margin: 0;
+  background: var(--gray);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+img, svg, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+h1, h2, h3, h4, p, ul, ol, figure, dl, dd { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+input, select, textarea { font: inherit; color: inherit; }
+
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.on-ink :focus-visible, .on-ink:focus-visible { outline-color: #fff; }
+
+.sr-only {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: fixed; top: 8px; right: 8px; z-index: 200; padding: 10px 16px;
+  background: var(--white); color: var(--ink); transform: translateY(-140%);
+  transition: transform var(--dur-short) var(--ease-out);
+}
+.skip-link:focus { transform: none; }
+
+/* ---------- typography ---------- */
+.display, .h1, .h2, .h3 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: 0;
+}
+.h1 { font-size: var(--fs-h1); }
+.h2 { font-size: var(--fs-h2); }
+.h3 { font-size: var(--fs-h3); line-height: 0.95; }
+.strong { font-weight: 700; }
+.lead { font-size: var(--fs-lead); line-height: 1.6; color: var(--text-2); max-width: 36em; font-weight: 400; }
+.statement { font-size: var(--fs-statement); line-height: 1.45; font-weight: 300; max-width: 30em; }
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: inline-flex; align-items: center; gap: 14px;
+  color: var(--text-2);
+}
+.eyebrow::before { content: ''; width: 44px; height: 1px; background: currentColor; opacity: 0.7; }
+.eyebrow[dir='ltr']::before { order: 0; }
+.caption { font-size: var(--fs-caption); letter-spacing: 0.04em; color: var(--text-3); }
+.num { font-family: var(--font-display); font-weight: 300; font-variant-numeric: lining-nums tabular-nums; direction: ltr; unicode-bidi: isolate; }
+bdi, .ltr { unicode-bidi: isolate; direction: ltr; }
+
+/* masked line reveal */
+.ln { display: block; overflow: hidden; padding-bottom: 0.06em; margin-bottom: -0.06em; }
+.ln > span { display: block; will-change: transform; }
+
+/* ---------- layout ---------- */
+.wrap { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
+.section { padding-block: var(--section-y); position: relative; }
+.surface-gray { background: var(--gray); }
+.surface-light { background: var(--gray-2); }
+.surface-lighter { background: var(--gray-3); }
+.surface-ink { background: var(--ink); color: var(--on-ink); }
+.surface-ink .lead, .surface-ink .caption { color: var(--on-ink-2); }
+.surface-ink .eyebrow { color: var(--on-ink-2); }
+
+/* ---------- button (Emerald-like proportions, chamfered) ---------- */
+.btn {
+  --b-bg: var(--ink); --b-fg: #fff; --b-line: rgba(255,255,255,0.28);
+  position: relative; display: inline-flex; align-items: center; gap: 22px;
+  min-height: 48px; padding: 0 22px 0 18px;
+  font-family: var(--font-display); font-size: 1.45rem; font-weight: 400; letter-spacing: 0.01em; line-height: 1;
+  color: var(--b-fg); background: var(--b-bg);
+  clip-path: polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
+  transition: background var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out);
+  box-shadow: inset 0 0 0 1px var(--b-line);
+  isolation: isolate; white-space: nowrap;
+}
+.btn .arrow { width: 30px; height: 10px; flex: none; transition: transform var(--dur-base) var(--ease-out); }
+.btn:hover .arrow, .btn:focus-visible .arrow { transform: translateX(-6px); }
+.btn:hover { --b-bg: var(--ink-2); }
+.btn--light { --b-bg: #fff; --b-fg: var(--ink); --b-line: rgba(36,34,63,0.18); }
+.btn--light:hover { --b-bg: var(--gray-2); }
+.btn--ghost { --b-bg: rgba(27, 26, 49, 0.55); --b-line: rgba(255,255,255,0.34); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.btn--ghost:hover { --b-bg: rgba(27, 26, 49, 0.8); }
+
+.link-arrow {
+  display: inline-flex; align-items: center; gap: 12px; font-weight: 500; font-size: var(--fs-small);
+  padding-block: 10px; border-bottom: 1px solid currentColor; padding-bottom: 6px;
+}
+.link-arrow svg { width: 22px; height: 8px; transition: transform var(--dur-base) var(--ease-out); }
+.link-arrow:hover svg { transform: translateX(-5px); }
+
+/* chamfered image frame */
+.cut { clip-path: polygon(0 0, calc(100% - var(--cut-lg)) 0, 100% var(--cut-lg), 100% 100%, var(--cut-lg) 100%, 0 calc(100% - var(--cut-lg))); }
+
+/* status tag */
+.tag {
+  display: inline-flex; align-items: center; gap: 8px; font-size: var(--fs-caption); font-weight: 500; letter-spacing: 0.06em;
+  color: var(--text-2);
+}
+.tag::before { content: ''; width: 14px; height: 1px; background: currentColor; }
+.tag[data-status='marketing'] { color: var(--ink-2); }
+.surface-ink .tag, .on-ink .tag { color: var(--on-ink-2); }
+
+/* reveal initial states are applied only when JS motion is active */
+html.motion [data-r='fade'] { opacity: 0; }
+html.motion [data-r='lines'] .ln > span { transform: translateY(105%); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+/* shared-element project transition layer */
+.pt-layer { position: fixed; z-index: 70; overflow: hidden; pointer-events: none; background: var(--ink); }
+.pt-layer img { width: 100%; height: 100%; object-fit: cover; }
+.pt-veil { position: absolute; inset: 0; opacity: 0; background: linear-gradient(180deg, rgba(27,26,49,0.55) 0%, rgba(27,26,49,0) 30%, rgba(27,26,49,0.1) 55%, rgba(27,26,49,0.82) 100%); }
+
+/* page entrance (template) */
+.page-enter { animation: page-in 0.9s var(--ease-out) both; }
+@keyframes page-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* ==========================================================================
+   NX — design layer for everything after the frozen hero (home sections,
+   archive, urban renewal, footer). Only new class names; nothing above is
+   overridden, so the hero/header render exactly as before.
+   ========================================================================== */
+:root {
+  --nx-bg: #151325;          /* deep Bonei ink (sampled from the approved about mock) */
+  --nx-bg-2: #1c1936;
+  --nx-bg-3: #221f40;
+  --nx-strip: rgba(40, 37, 93, 0.9);
+  --nx-strip-2: rgba(58, 52, 128, 0.78);
+  --nx-pale: #e3e1f2;        /* pale lavender: Bonei's answer to Emerald's mint */
+  --nx-pale-2: #f1f0f8;
+  --nx-text: #eeedf6;
+  --nx-muted: rgba(238, 237, 246, 0.66);
+  --nx-faint: rgba(238, 237, 246, 0.42);
+  --nx-line: rgba(227, 225, 242, 0.22);
+  --nx-line-2: rgba(227, 225, 242, 0.4);
+  --nx-pad: clamp(1.25rem, 4.65vw, 5.5rem);
+  --nx-y: clamp(5.5rem, 3rem + 7vw, 11rem);
+}
+
+.nx { --font-latin: var(--f-latin, 'Times New Roman'), 'Times New Roman', serif; --font-text: var(--f-heebo, 'Assistant'), var(--font-body); font-family: var(--font-text); background: var(--nx-bg); color: var(--nx-text); }
+.nx input, .nx select, .nx textarea, .nx button:not(.nx-btn) { font-family: var(--font-text); }
+.nx :focus-visible { outline-color: var(--nx-pale); }
+.nx-wrap { width: 100%; padding-inline: var(--nx-pad); }
+
+/* ornament: short rule — text — short rule (no diamonds) */
+.nx-orn { display: flex; align-items: center; gap: clamp(12px, 1.4vw, 22px); color: var(--nx-text); }
+.nx-orn__line { flex: 0 0 clamp(36px, 4.6vw, 84px); height: 1px; background: var(--nx-line-2); transform-origin: var(--o, center); }
+
+.nx-latin { font-family: var(--font-latin); font-weight: 400; letter-spacing: 0.02em; line-height: 0.92; }
+.nx-display { font-family: var(--font-display); font-weight: 300; line-height: 0.86; }
+
+/* pale chamfered button (Emerald proportions) */
+.nx-btn {
+  --c: 10px; position: relative; display: inline-flex; align-items: center; justify-content: space-between; gap: clamp(28px, 3vw, 48px);
+  min-height: 52px; padding: 0 22px 0 20px; background: var(--nx-pale); color: var(--nx-bg);
+  font-family: var(--font-display); font-size: clamp(1.35rem, 1.1rem + 0.5vw, 1.7rem); font-weight: 700; line-height: 1; white-space: nowrap;
+  clip-path: polygon(var(--c) 0, calc(100% - var(--c)) 0, 100% var(--c), 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, var(--c) 100%, 0 calc(100% - var(--c)), 0 var(--c));
+  transition: background-color 240ms var(--ease-out), color 240ms var(--ease-out);
+}
+.nx-btn svg { width: 22px; height: 10px; flex: none; transition: transform 500ms var(--ease-out); }
+.nx-btn:hover, .nx-btn:focus-visible { background: #fff; }
+.nx-btn:hover svg, .nx-btn:focus-visible svg { transform: translateX(-6px); }
+.nx-btn:focus-visible { outline: 2px solid var(--nx-pale); outline-offset: 4px; }
+.nx-btn[disabled] { opacity: 0.6; cursor: progress; }
+
+/* masked line used by section reveals */
+.nx-ln { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.nx-ln > span { display: block; }
+html.motion .nx-ln[data-hide] > span { transform: translateY(108%); }
+
+/* light surface: same system, inverted tokens — used to alternate with the dark ink sections */
+.nx.nx-light {
+  --nx-bg: #eceaf4; --nx-bg-2: #e3e0ef; --nx-bg-3: #d9d6e8;
+  --nx-text: #1b1836; --nx-muted: rgba(27, 24, 54, 0.7); --nx-faint: rgba(27, 24, 54, 0.5);
+  --nx-line: rgba(27, 24, 54, 0.16); --nx-line-2: rgba(27, 24, 54, 0.36);
+  --nx-pale: #28255d; --nx-pale-2: #28255d;
+  background: var(--nx-bg); color: var(--nx-text);
+}
+.nx-light .nx-btn { background: var(--ink-2); color: #fff; }
+.nx-light .nx-btn:hover, .nx-light .nx-btn:focus-visible { background: var(--ink); }
+.nx-light :focus-visible { outline-color: var(--ink-2); }
+
+/* ---- NX atmosphere: soft light behind dark sections (see components/nx/Glow.tsx) ---- */
+.nx-glow { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; contain: paint; }
+.nx-glow i { position: absolute; display: block; border-radius: 50%; will-change: transform; }
+.nx-glow i:first-child { width: 90vw; height: 90vw; max-width: 1700px; max-height: 1700px; background: radial-gradient(closest-side, rgba(58, 50, 96, var(--g1, 0.95)) 0%, rgba(55, 48, 84, calc(var(--g1, 0.95) * 0.55)) 45%, rgba(55, 48, 84, 0) 100%); }
+.nx-glow i:last-child { width: 74vw; height: 74vw; max-width: 1500px; max-height: 1500px; background: radial-gradient(closest-side, rgba(66, 76, 112, var(--g2, 0.8)) 0%, rgba(61, 69, 101, calc(var(--g2, 0.8) * 0.55)) 45%, rgba(61, 69, 101, 0) 100%); }
+.nx-glow[data-v='a'] i:first-child { left: -30%; top: -10%; }
+.nx-glow[data-v='a'] i:last-child { right: -28%; bottom: 4%; }
+.nx-glow[data-v='b'] { --g1: 0.75; --g2: 0.9; }
+.nx-glow[data-v='b'] i:first-child { right: -32%; top: 6%; }
+.nx-glow[data-v='b'] i:last-child { left: -26%; bottom: -14%; }
+.nx-glow[data-v='c'] { --g1: 0.9; --g2: 0.6; }
+.nx-glow[data-v='c'] i:first-child { left: -18%; bottom: -22%; }
+.nx-glow[data-v='c'] i:last-child { right: -34%; top: -16%; }
+.nx-glow[data-v='d'] { --g1: 0.8; --g2: 0.7; }
+.nx-glow[data-v='d'] i:first-child { right: -20%; top: -24%; }
+.nx-glow[data-v='d'] i:last-child { left: -34%; top: 30%; }
+@media (max-width: 767px) { .nx-glow i:first-child, .nx-glow i:last-child { width: 130vw; height: 130vw; } }
+
+/* compact light CTA: thin arrow on the left, softly cut corners, no separate arrow cell */
+.nx-btn--compact { --c: 6px; min-height: 48px; gap: clamp(30px, 3.4vw, 56px); padding: 0 20px; background: #ebeaf4; font-size: clamp(1.25rem, 1.05rem + 0.4vw, 1.5rem); }
+.nx-btn--compact svg { width: 30px; height: 10px; }
+
+/* page-to-page cover + first-load screen (components/Transition.tsx)
+   Emerald page change as recorded: the page cuts to a dark field with faint vertical rules, then the new page
+   opens from a thin centre slit out to the full width. Here: two dark halves that part from the centre. */
+.pg-cover, .pg-loader { position: fixed; inset: 0; z-index: 90; pointer-events: none; }
+.pg-cover { visibility: hidden; }
+.pg-loader { display: none; z-index: 95; }
+html.seen .pg-loader { display: none !important; }
+html.motion .pg-loader { display: block; pointer-events: auto; animation: pg-failsafe 0s 7s forwards; }
+@keyframes pg-failsafe { to { visibility: hidden; pointer-events: none; } }
+.pg-half { position: absolute; top: 0; bottom: 0; width: 50.2%; background: var(--nx-bg, #151325); will-change: transform; overflow: hidden; }
+.pg-half--l { left: 0; } .pg-half--r { right: 0; }
+.pg-half::before { content: ''; position: absolute; inset: 0; background: radial-gradient(70% 60% at 50% 40%, rgba(58, 50, 96, 0.55), rgba(21, 19, 37, 0) 100%); }
+.pg-rules { position: absolute; inset: 0; display: flex; justify-content: space-between; padding-inline: 4.65vw; pointer-events: none; }
+.pg-rules i { width: 1px; height: 100%; background: linear-gradient(180deg, transparent 0%, rgba(227, 225, 242, 0.1) 20%, rgba(227, 225, 242, 0.1) 80%, transparent 100%); transform-origin: 50% 50%; }
+.pg-mark { position: absolute; left: 50%; top: 50%; width: clamp(120px, 13vw, 200px); transform: translate(-50%, -50%); }
+.pg-mark img { width: 100%; height: auto; }
+.pg-loader .pg-rules i { transform: scaleY(0); animation: pg-rule 0.6s var(--ease-out) forwards; animation-delay: calc(var(--k, 0) * 28ms); }
+.pg-loader .pg-mark img { clip-path: inset(0% 0% 100% 0%); transform: translateY(12%); animation: pg-mark 0.55s 0.04s var(--ease-out) forwards; }
+.pg-loader .pg-mark i { transform: scaleX(0); animation: pg-line 0.5s 0.2s var(--ease-in-out) forwards; }
+@keyframes pg-rule { to { transform: scaleY(1); } }
+@keyframes pg-mark { to { clip-path: inset(0% 0% 0% 0%); transform: none; } }
+@keyframes pg-line { to { transform: scaleX(1); } }
+.pg-mark i { display: block; height: 1px; margin-top: 18px; background: rgba(227, 225, 242, 0.5); transform-origin: 50% 50%; }
+@media (prefers-reduced-motion: reduce) { .pg-cover, .pg-loader { display: none !important; } }
+
+/* split heading (components/nx/ZTitle.tsx): whole text stays in the DOM via aria-label, words are the animation layer */
+.zt-l { display: block; }
+.zt-w { display: inline-block; will-change: transform, opacity; }
+.zt-w + .zt-w { margin-inline-start: 0.22em; }
+
+/* page-wide atmosphere for flat dark pages (same light fields as the section glows, repeated down the page; static, no JS) */
+.nx-atmos { background-color: var(--nx-bg);
+  background-image: radial-gradient(60% 46% at 4% 22%, rgba(60, 52, 100, 0.85), rgba(60, 52, 100, 0) 100%), radial-gradient(56% 44% at 98% 74%, rgba(66, 76, 112, 0.7), rgba(66, 76, 112, 0) 100%);
+  background-size: 100% 150vh; background-repeat: repeat-y; }

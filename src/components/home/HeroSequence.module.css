@@ -1,0 +1,113 @@
+.seq { position: relative; height: 230svh; z-index: 2; pointer-events: none; }
+.sticky { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+.sticky a, .sticky button { pointer-events: auto; }
+
+.hero {
+  position: absolute; inset: 0; overflow: hidden;
+  clip-path: url(#heroClip);
+  background: var(--ink);
+}
+.defs { position: absolute; }
+.media { position: absolute; inset: 0; transform-origin: 62% 70%; will-change: transform; }
+/* soft fill: the same photograph, blurred, extends the dusk sky where the sharp frame stops */
+.fill { position: absolute; inset: -4%; }
+.fill img { object-fit: cover; object-position: 60% 0%; filter: blur(28px) saturate(1.05); }
+/* the real render keeps its full architecture: anchored bottom-right, edges feathered into the fill */
+.frame {
+  position: absolute; right: 0; bottom: 0;
+  width: max(87.5%, calc(100svh * 16 / 9 * 0.95)); aspect-ratio: 16 / 9;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 16%), linear-gradient(to right, transparent 0%, #000 14%);
+  -webkit-mask-composite: source-in; mask-image: linear-gradient(to bottom, transparent 0%, #000 16%), linear-gradient(to right, transparent 0%, #000 14%);
+  mask-composite: intersect;
+}
+.img { object-fit: cover; }
+
+/* blue-purple blend: deep on the text side, releasing into the photograph */
+.tint {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(to right, rgba(30, 28, 66, 0.94) 0%, rgba(34, 32, 82, 0.82) 16%, rgba(40, 37, 93, 0.5) 31%, rgba(40, 37, 93, 0.14) 46%, rgba(40, 37, 93, 0) 58%),
+    linear-gradient(to bottom, rgba(24, 23, 52, 0.5) 0%, rgba(24, 23, 52, 0) 20%),
+    linear-gradient(to top, rgba(24, 23, 52, 0.42) 0%, rgba(24, 23, 52, 0) 22%);
+}
+
+.content {
+  position: absolute; left: 5.6vw; top: 24.5%;
+  width: max(330px, 21.4vw);
+  color: #fff;
+  will-change: transform, opacity;
+}
+.eyebrow {
+  display: flex; align-items: center; justify-content: flex-end; gap: 16px;
+  font-size: clamp(0.72rem, 0.45rem + 0.42vw, 1rem); letter-spacing: 0.2em; font-weight: 400;
+  color: rgba(255, 255, 255, 0.86); margin-bottom: clamp(18px, 2.4vh, 30px);
+}
+.eyebrow::before { content: ''; width: clamp(28px, 3vw, 50px); height: 1px; background: currentColor; }
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 9.7vw, 12.5rem);
+  line-height: 0.8;
+  font-weight: 300;
+  margin-inline-end: 1.6vw;
+  text-wrap: nowrap;
+}
+.l1 { font-weight: 300; }
+.l2 { font-weight: 700; margin-top: -0.1em; }
+:global(html.motion) .l1 > span, :global(html.motion) .l2 > span { transform: translateY(105%); }
+
+.sub {
+  margin-top: clamp(12px, 1.8vh, 22px);
+  font-size: clamp(1.05rem, 0.5rem + 1.02vw, 1.75rem); font-weight: 300; line-height: 1.3; letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.94);
+}
+.ctaWrap { margin-top: clamp(26px, 4.4vh, 50px); margin-inline-end: 3.5vw; display: flex; justify-content: flex-start; }
+.cta { min-height: 54px; font-size: clamp(1.35rem, 0.8rem + 0.8vw, 1.85rem); padding-inline: 26px 22px; gap: clamp(40px, 4.4vw, 74px); --b-bg: rgba(27, 26, 49, 0.82) !important; }
+
+.foot { position: absolute; inset: auto 0 0 0; height: 15%; display: flex; align-items: center; justify-content: space-between; padding-inline: 2.8vw 3.8vw; color: #fff; }
+.caption { font-size: clamp(0.95rem, 0.6rem + 0.6vw, 1.4rem); font-weight: 300; letter-spacing: 0.02em; padding-block: 10px; }
+.caption:hover { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.cue { order: 2; width: 44px; height: 44px; display: grid; place-items: center; }
+
+/* ---- clouds ---- */
+.clouds { position: absolute; inset: 0; pointer-events: none; }
+.cloud { position: absolute; left: 50%; width: 118vw; margin-left: -59vw; will-change: transform; }
+.cloud img { width: 100%; height: auto; }
+.tail { height: 26svh; background: #eaebef; margin-block: -2px; }
+.mid { -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 96%); mask-image: linear-gradient(to bottom, #000 62%, transparent 96%); }
+.flip { transform: scaleY(-1); }
+/* resting position: thin soft cloud tops along the lower edge of the hero */
+.back { top: calc(95svh - 0.3 * 128vw * 700 / 1600); opacity: 0.6; width: 128vw; margin-left: -64vw; }
+.mid { top: calc(104svh - 0.29 * 118vw * 760 / 1600); }
+.front { top: calc(113svh - 0.27 * 118vw * 820 / 1600); }
+
+@media (max-width: 767px), (max-width: 1100px) and (orientation: portrait) {
+  .seq { height: 185svh; }
+  .hero { clip-path: url(#heroClipM); }
+  .frame { width: auto; height: 74%; top: 0; bottom: auto; right: auto; left: 50%; transform: translateX(-58%); aspect-ratio: 16/9;
+    -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 100%); mask-image: linear-gradient(to bottom, #000 80%, transparent 100%); }
+  .fill { inset: 0; }
+  .fill img { object-position: 58% 100%; filter: blur(22px) brightness(0.85); }
+  .tint {
+    background:
+      linear-gradient(to top, rgba(30, 28, 66, 0.96) 0%, rgba(34, 32, 82, 0.86) 22%, rgba(40, 37, 93, 0.35) 40%, rgba(40, 37, 93, 0) 54%),
+      linear-gradient(to bottom, rgba(24, 23, 52, 0.5) 0%, rgba(24, 23, 52, 0) 16%);
+  }
+  .content { left: auto; right: 22px; left: 22px; width: auto; top: auto; bottom: 21%; }
+  .title { font-size: clamp(4.6rem, 25vw, 10rem); margin: 0; }
+  .sub { font-size: clamp(1.15rem, 0.8rem + 1.4vw, 1.6rem); }
+  .content { text-shadow: 0 1px 18px rgba(20, 19, 45, 0.45); }
+  .eyebrow { margin-bottom: 14px; }
+  .foot { height: 13%; padding-inline: 22px 14px; }
+  .cloud { width: 210vw; margin-left: -105vw; }
+  .back { width: 230vw; margin-left: -115vw; top: calc(93svh - 0.3 * 230vw * 700 / 1600); }
+  .mid { top: calc(102svh - 0.29 * 210vw * 760 / 1600); }
+  .front { top: calc(110svh - 0.27 * 210vw * 820 / 1600); }
+  .tail { height: 82svh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seq { height: auto; }
+  .sticky { position: relative; height: 100svh; }
+  .mid, .front { display: none; }
+}

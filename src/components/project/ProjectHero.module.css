@@ -1,0 +1,14 @@
+.hero { position: relative; height: 92svh; min-height: 560px; color: #fff; display: flex; align-items: flex-end; overflow: hidden; background: var(--ink); }
+.media { position: absolute; inset: 0; }
+.img { object-fit: cover; }
+.empty { position: absolute; inset: 0; background: radial-gradient(120% 90% at 30% 20%, var(--ink-2), var(--ink-deep)); }
+.veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(27,26,49,0.55) 0%, rgba(27,26,49,0) 30%, rgba(27,26,49,0.1) 55%, rgba(27,26,49,0.82) 100%); }
+.inner { position: relative; padding-bottom: clamp(2.5rem, 6vh, 5rem); display: grid; gap: 18px; }
+.crumbs { display: flex; gap: 10px; font-size: var(--fs-caption); color: var(--on-ink-2); }
+.crumbs a { padding-block: 8px; }
+.crumbs a:hover { color: #fff; }
+.h { font-family: var(--font-display); font-weight: 700; font-size: clamp(3.6rem, 1.6rem + 6vw, 9rem); line-height: 0.86; }
+.sub { font-weight: 300; font-size: 0.42em; line-height: 1.1; margin-top: 0.2em; }
+.meta { display: flex; flex-wrap: wrap; gap: 10px 26px; align-items: center; font-size: var(--fs-small); color: var(--on-ink-2); }
+.chip { border: 1px solid var(--line-ink); padding: 4px 12px; font-size: var(--fs-caption); }
+@media (max-width: 767px) { .hero { height: 78svh; } }

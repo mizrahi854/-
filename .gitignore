@@ -1,0 +1,11 @@
+node_modules
+.next
+_references/raw
+_references/probe
+.env*.local
+.playwright-mcp
+.next-prod
+_qa
+.vite
+*.tsbuildinfo
+.DS_Store

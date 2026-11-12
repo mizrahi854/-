@@ -1,0 +1,9 @@
+.hero { position: relative; background: var(--ink); color: #fff; padding-top: calc(var(--header-h) + clamp(4rem, 10vw, 9rem)); padding-bottom: clamp(3.5rem, 7vw, 7rem); overflow: hidden; }
+.withImg { min-height: 86svh; display: flex; align-items: flex-end; }
+.media { position: absolute; inset: 0; }
+.img { object-fit: cover; }
+.shade { position: absolute; inset: 0; background: linear-gradient(to left, rgba(30,28,66,0.92) 0%, rgba(34,32,82,0.7) 38%, rgba(40,37,93,0.15) 75%), linear-gradient(to bottom, rgba(24,23,52,0.55), rgba(24,23,52,0) 25%); }
+.inner { position: relative; display: grid; gap: 26px; justify-items: start; }
+.h { font-family: var(--font-display); font-weight: 300; font-size: clamp(3rem, 1.4rem + 4vw, 5.8rem); line-height: 0.86; }
+.h :global(.ln:last-child) { font-weight: 700; }
+.lead { font-size: var(--fs-lead); color: var(--on-ink-2); max-width: 38em; line-height: 1.6; }

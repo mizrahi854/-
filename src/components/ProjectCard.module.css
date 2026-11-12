@@ -1,0 +1,41 @@
+.card { display: block; position: relative; --mx: 50%; --my: 30%; --rx: 0deg; --ry: 0deg; }
+.tilt { transform: perspective(1200px) rotateX(var(--rx)) rotateY(var(--ry)); transition: transform 700ms var(--ease-out); transform-style: preserve-3d; }
+.frame { position: relative; overflow: hidden; background: #cfd0d8; isolation: isolate; }
+.img { object-fit: cover; transition: transform 1200ms var(--ease-out), filter 700ms var(--ease-out); }
+.noimg { position: absolute; inset: 0; display: grid; place-items: center; background: linear-gradient(160deg, var(--ink-2), var(--ink)); opacity: 1; }
+.noimg img { opacity: 0.5; }
+/* glass highlight: a soft reflection under the pointer */
+.glass { position: absolute; inset: 0; pointer-events: none; opacity: 0; mix-blend-mode: soft-light;
+  background: radial-gradient(60% 50% at var(--mx) var(--my), rgba(255,255,255,0.75), rgba(255,255,255,0) 70%);
+  transition: opacity 600ms var(--ease-out); }
+/* one diagonal sweep, like light crossing a glazed facade */
+.sweep { position: absolute; inset: -20% -60%; pointer-events: none; opacity: 0;
+  background: linear-gradient(105deg, transparent 38%, rgba(255,255,255,0.0) 42%, rgba(255,255,255,0.32) 49%, rgba(255,255,255,0.0) 56%, transparent 60%);
+  transform: translateX(-40%); }
+.emblem { position: absolute; left: 50%; top: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px; display: grid; place-items: center;
+  background: rgba(27,26,49,0.78); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+  opacity: 0; transform: scale(0.86); transition: opacity 500ms var(--ease-out), transform 700ms var(--ease-out); }
+.emblem img { width: 40px; height: auto; }
+
+.cap { padding-top: 18px; display: grid; gap: 4px; }
+.capTop { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.title { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.9rem, 1.3rem + 1.2vw, 2.7rem); line-height: 1; }
+.city { font-size: var(--fs-small); color: var(--text-2); }
+.detail { display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: var(--fs-caption); color: var(--text-3);
+  max-height: 0; opacity: 0; overflow: hidden; transition: max-height 600ms var(--ease-out), opacity 500ms var(--ease-out), padding 600ms var(--ease-out); border-top: 1px solid transparent; }
+.arr { width: 26px; height: 9px; flex: none; color: var(--ink); transition: transform 600ms var(--ease-out); }
+
+@media (hover: hover) {
+  .card:hover .img { transform: scale(1.045); filter: brightness(1.08) saturate(1.04); }
+  .card:hover .glass { opacity: 0.9; }
+  .card:hover .sweep { opacity: 1; transform: translateX(40%); transition: transform 1300ms var(--ease-out), opacity 200ms; }
+  .card:hover .emblem { opacity: 1; transform: scale(1); }
+  .card:hover .detail { max-height: 60px; opacity: 1; padding-top: 10px; margin-top: 6px; border-top-color: var(--line-strong); }
+  .card:hover .arr { transform: translateX(-6px); }
+}
+.card:focus-visible { outline-offset: 6px; }
+.card:focus-visible .detail { max-height: 60px; opacity: 1; padding-top: 10px; margin-top: 6px; }
+/* touch: no hover-only information */
+@media (hover: none) { .detail { max-height: none; opacity: 1; padding-top: 8px; } .emblem { display: none; } }
+.surfaceInk .title { color: #fff; }

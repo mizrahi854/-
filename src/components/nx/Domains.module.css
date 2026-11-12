@@ -1,0 +1,51 @@
+.sec { padding-top: var(--nx-y); }
+/* title row: title right · two-line statement left */
+.head { display: grid; grid-template-columns: 1fr minmax(0, 30rem); align-items: center; gap: clamp(20px, 2.6vw, 52px); padding-bottom: clamp(2rem, 3.4vw, 4.4rem); }
+.title { font-family: var(--font-display); font-weight: 300; font-size: clamp(2.6rem, 1.3rem + 2.7vw, 4.6rem); line-height: 0.85; white-space: nowrap; }
+.lead { font-weight: 600; font-size: clamp(1rem, 0.85rem + 0.35vw, 1.25rem); line-height: 1.45; color: var(--nx-text); text-wrap: balance; }
+
+/* full-bleed run of panels sharing diagonal seams (geometry in physical %, so the strip is LTR) */
+.strip { position: relative; direction: ltr; height: clamp(300px, 34.15vw, 820px); margin: 0; padding: 0; list-style: none; }
+.panel { position: absolute; inset: 0; clip-path: var(--clip); }
+.link { position: absolute; inset: 0; display: block; direction: rtl; color: #fff; }
+.box { position: absolute; top: 0; bottom: 0; left: var(--l); width: var(--w); overflow: hidden; background: var(--nx-bg-3); }
+.par { position: absolute; inset: -6% 0; }
+.img { object-fit: cover; transition: transform 1100ms var(--ease-out), filter 600ms var(--ease-out); }
+.link::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(22, 19, 42, 0) 55%, rgba(22, 19, 42, 0.34) 100%); }
+
+.label { position: absolute; z-index: 1; top: 50%; left: var(--cx); transform: translate(-50%, -50%); display: grid; justify-items: center; gap: 0; pointer-events: none; }
+.labText { --c: 14px; display: block; padding: 0.42em 0.9em 0.48em; background: rgba(24, 21, 48, 0.9);
+  font-family: var(--font-display); font-weight: 700; font-size: clamp(1.4rem, 0.9rem + 1vw, 2.2rem); line-height: 1; white-space: nowrap; color: #f1f0f8;
+  clip-path: polygon(var(--c) 0, calc(100% - var(--c)) 0, 100% var(--c), 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, var(--c) 100%, 0 calc(100% - var(--c)), 0 var(--c));
+  box-shadow: inset 0 0 0 1px rgba(227, 225, 242, 0.18); transition: background-color 400ms var(--ease-out), transform 600ms var(--ease-out); }
+.enter { display: inline-flex; align-items: center; gap: 10px; margin-top: 12px; font-size: var(--fs-caption); letter-spacing: 0.08em; color: #fff; opacity: 0; transform: translateY(-6px); transition: opacity 400ms var(--ease-out), transform 500ms var(--ease-out); }
+.arr { width: 22px; height: 9px; }
+
+@media (hover: hover) and (pointer: fine) {
+  .strip:has(.link:hover) .link:not(:hover) .img { filter: brightness(0.62) saturate(0.85); }
+  .link:hover .img { transform: scale(1.06); }
+  .link:hover .labText { background: rgba(40, 37, 93, 0.92); transform: translateY(-4px); }
+  .link:hover .enter { opacity: 1; transform: none; }
+}
+.link:focus-visible { outline: none; }
+.link:focus-visible .labText { background: rgba(40, 37, 93, 0.95); outline: 2px solid var(--nx-pale); outline-offset: 4px; }
+.link:focus-visible .enter { opacity: 1; transform: none; }
+.strip:has(.link:focus-visible) .link:not(:focus-visible) .img { filter: brightness(0.62); }
+
+@media (max-width: 900px) {
+  .head { grid-template-columns: 1fr; gap: 18px; }
+}
+/* mobile: stacked panels, horizontal diagonal seams; captions always visible */
+@media (max-width: 767px) {
+  .strip { height: auto; display: grid; }
+  .panel { position: relative; inset: auto; height: 64vw; margin-top: -7vw; --rv: 1;
+    clip-path: polygon(0 calc(7vw + (1 - var(--rv)) * 60vw), 100% calc((1 - var(--rv)) * 60vw), 100% 100%, 0 calc(100% - 7vw)); }
+  .strip { padding-top: 7vw; }
+  /* DOM order is physical left→right, so the first child is the visually last panel: straight bottom */
+  .panel:first-child { clip-path: polygon(0 calc(7vw + (1 - var(--rv)) * 60vw), 100% calc((1 - var(--rv)) * 60vw), 100% 100%, 0 100%); }
+  /* visual order on mobile follows reading order (first domain on top) */
+  .panel { order: var(--ord); }
+  .box { left: 0; width: 100%; }
+  .label { left: 50%; top: 54%; }
+  .enter { opacity: 1; transform: none; }
+}

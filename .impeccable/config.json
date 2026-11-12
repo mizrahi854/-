@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "src/components/home/QualityMark.module.css"
+        ],
+        "createdAt": "2026-11-11T18:20:34.630Z",
+        "reason": "Claude: the supplied Emerald recording shows the wordmark catching light on its last letters; the sheen settles to a near-solid pale fill"
+      }
+    ]
+  }
+}

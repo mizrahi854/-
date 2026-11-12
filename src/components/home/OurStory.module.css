@@ -1,0 +1,25 @@
+.sec { position: relative; overflow: clip; padding-block: clamp(4rem, 10vh, 7rem); background: var(--nx-bg); }
+.stage { position: relative; z-index: 1; display: grid; min-height: clamp(460px, 68vh, 680px); margin-inline: var(--nx-pad); }
+.photo { position: absolute; inset: 0; overflow: hidden; background: var(--nx-bg-3); }
+.imgWrap { position: absolute; inset: -10% 0; will-change: transform; }
+.img { object-fit: cover; object-position: 28% 50%; }
+
+/* panel over the right of the photograph; its shape has chamfered corners, larger at the bottom (as recorded) */
+.panel { position: relative; grid-area: 1 / 1; justify-self: start; align-self: start; width: min(34vw, 520px); margin-inline-start: clamp(16px, 3vw, 48px); margin-block-start: clamp(20px, 4vh, 44px); }
+.shape { position: absolute; inset: 0; background: rgba(40, 37, 93, 0.9); box-shadow: inset 0 0 0 1px rgba(227, 225, 242, 0.14);
+  clip-path: polygon(40px 0, calc(100% - 40px) 0, 100% 40px, 100% calc(100% - 44px), calc(100% - 44px) 100%, 76px 100%, 0 calc(100% - 76px), 0 40px); }
+.body { position: relative; display: grid; gap: clamp(12px, 1.2vw, 18px); padding: clamp(26px, 2.6vw, 44px) clamp(24px, 2.8vw, 44px) clamp(40px, 3.6vw, 58px); color: #eeedf6; }
+.orn { color: #eeedf6; margin-bottom: 4px; }
+.orn :global(.nx-orn__line) { flex-basis: clamp(40px, 6vw, 90px); }
+.title { font-family: var(--font-latin); font-weight: 400; font-size: clamp(1.6rem, 1rem + 1.3vw, 2.5rem); line-height: 1; letter-spacing: 0.04em; white-space: nowrap; }
+.body p { font-size: clamp(1rem, 0.92rem + 0.25vw, 1.18rem); line-height: 1.55; color: rgba(238, 237, 246, 0.9); text-wrap: pretty; }
+.body strong { font-weight: 700; color: #fff; }
+.btn { justify-self: end; margin-top: clamp(8px, 1.4vw, 22px); }
+
+@media (max-width: 900px) {
+  .stage { min-height: 0; grid-template-rows: auto auto; margin-inline: 0; }
+  .photo { position: relative; grid-area: 1 / 1; aspect-ratio: 4 / 3.2; inset: auto; }
+  .panel { grid-area: 2 / 1; justify-self: stretch; width: auto; margin: -64px var(--nx-pad) 0; }
+  .shape { clip-path: polygon(20px 0, calc(100% - 20px) 0, 100% 20px, 100% calc(100% - 50px), calc(100% - 50px) 100%, 50px 100%, 0 calc(100% - 50px), 0 20px); }
+}
+@media (prefers-reduced-motion: reduce) { .panel { transform: none; } }

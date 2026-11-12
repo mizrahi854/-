@@ -1,0 +1,55 @@
+.form { --f-line: rgba(255,255,255,0.32); --f-text: #fff; --f-muted: var(--on-ink-2); --f-err: #ffb4b4; display: grid; gap: 26px; }
+.light { --f-line: var(--line-strong); --f-text: var(--ink); --f-muted: var(--text-2); --f-err: #b42318; }
+.legend { font-size: var(--fs-caption); letter-spacing: 0.16em; color: var(--f-muted); margin-bottom: 12px; padding: 0; }
+.inq { border: 0; padding: 0; margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip { position: relative; }
+.chip input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.chip span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border: 1px solid var(--f-line); color: var(--f-text); font-size: var(--fs-small); transition: background var(--dur-short), color var(--dur-short), border-color var(--dur-short); clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px); }
+.chip input:checked + span { background: var(--f-text); color: var(--ink); border-color: var(--f-text); }
+.light .chip input:checked + span { color: #fff; }
+.chip input:focus-visible + span { outline: 2px solid var(--focus); outline-offset: 2px; }
+.row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.field { display: grid; gap: 6px; align-content: start; }
+.field label { font-size: var(--fs-small); color: var(--f-muted); }
+.opt { font-size: var(--fs-caption); opacity: 0.8; }
+.field input, .field select, .field textarea { width: 100%; min-height: 48px; background: transparent; border: 0; border-bottom: 1px solid var(--f-line); color: var(--f-text); font-size: 1.0625rem; padding: 8px 0; border-radius: 0; transition: border-color var(--dur-short); }
+.field textarea { resize: vertical; min-height: 84px; }
+.field select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' stroke='%238a88a6' stroke-width='1.2'/%3E%3C/svg%3E"); background-position: left 4px center; background-repeat: no-repeat; padding-inline-end: 24px; }
+.field select option { color: #000; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-bottom-color: var(--f-text); box-shadow: 0 1px 0 0 var(--f-text); }
+.field input[aria-invalid], .check input[aria-invalid] { border-bottom-color: var(--f-err); }
+.err { font-size: var(--fs-caption); color: var(--f-err); }
+.consent { display: grid; gap: 10px; }
+.check { display: flex; gap: 12px; align-items: flex-start; font-size: var(--fs-caption); line-height: 1.6; color: var(--f-muted); cursor: pointer; }
+.check input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--ink-2); flex: none; }
+.check a { text-decoration: underline; text-underline-offset: 3px; color: var(--f-text); }
+.actions { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+.alt { font-size: var(--fs-small); color: var(--f-muted); }
+.alt a { color: var(--f-text); border-bottom: 1px solid var(--f-line); padding-block: 8px; }
+.live:empty { display: none; }
+.fail { font-size: var(--fs-small); color: var(--f-text); border-inline-start: 2px solid var(--f-err); padding: 6px 14px; }
+.fail a { text-decoration: underline; text-underline-offset: 3px; }
+.done { display: grid; gap: 14px; justify-items: start; color: #fff; padding-block: 20px; }
+.done.light { color: var(--ink); }
+.doneTitle { font-family: var(--font-display); font-size: var(--fs-h3); font-weight: 400; line-height: 1; }
+@media (max-width: 900px) { .row { grid-template-columns: 1fr; gap: 18px; } }
+
+/* ---- row layout (contact frame) ---- */
+.rowForm { --f-line: var(--nx-line-2); --f-text: var(--nx-text); --f-muted: var(--nx-muted); --f-err: #ffb9c6; gap: clamp(20px, 2.4vw, 34px); }
+.rowFields { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: clamp(14px, 1.4vw, 26px); align-items: end; }
+.rowFields .field label { font-size: var(--fs-small); color: var(--f-muted); }
+.rowFields .field input, .rowFields .field select { min-height: 46px; font-size: 1.05rem; }
+.rowFields .field select { background-position: left 2px center; }
+.rowFields .field select option { color: #111; }
+.rowSubmit { justify-self: stretch; }
+.rowConsent { display: grid; gap: 8px; justify-items: start; }
+.rowConsent .check input { accent-color: var(--nx-pale); }
+.doneRow { color: var(--nx-text); justify-items: center; text-align: center; }
+@media (min-width: 1101px) {
+  .rowFields { grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr)) minmax(190px, 0.95fr); }
+}
+@media (max-width: 760px) {
+  .rowFields { grid-template-columns: 1fr; gap: 18px; }
+  .rowSubmit { width: 100%; margin-top: 10px; }
+}
